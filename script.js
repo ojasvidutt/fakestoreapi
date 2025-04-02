@@ -26,7 +26,7 @@ fetch("https://fakestoreapi.com/products")
         document.querySelectorAll(".item").forEach(item => {
             item.addEventListener("click", (event) => {
 
-                event.stopPropagation();
+                event.stopPropagation(); // to prevent flash from closing as soon as it opens cuz document also uses click
                 //flash card is generated and becomes visible and background blurs
                 let img = item.querySelector("img").src;
                 let title = item.querySelector("h2").textContent;
@@ -37,7 +37,7 @@ fetch("https://fakestoreapi.com/products")
                 let price = item.querySelector(".cost").textContent;
 
 
-
+              
                 document.querySelector(".flash").innerHTML = ` 
                 <button class="back">&#129120;</button>
                  <img src="${img}" alt="">
@@ -49,11 +49,19 @@ fetch("https://fakestoreapi.com/products")
 
                 document.querySelector(".flash").style.display = "grid";
                 document.querySelector(".container").style.opacity = "0.5";
+             
 
+                // adding back button in flash
+                document.querySelector(".back").addEventListener("click",(event)=>{
+                    document.querySelector(".flash").style.display="none";
+                    document.querySelector(".container").style.opacity="1"
+                    event.stopPropagation();
+                    console.log("clicked")
+                });
 
 
             })
-
+            
            
             
            
@@ -65,11 +73,16 @@ fetch("https://fakestoreapi.com/products")
               
         })
         document.querySelector(".flash").addEventListener("click", (event) => {
-            event.stopPropagation(); // Prevents document click event from running
+            event.stopPropagation();
         });
+       
+        
 
+
+            })
+        
           
-    })
+    
     
     
 
@@ -89,9 +102,3 @@ function extractTitle(text) {
 }
 
 
-document.querySelector(".back").addEventListener("click",(event)=>{
-    document.querySelector(".flash").style.display="none";
-    document.querySelector(".container").style.opacity="1"
-    event.stopPropagation();
-    console.log("clicked")
-});
