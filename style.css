@@ -27,6 +27,7 @@ ul{ list-style: none; padding: 0;}
 .flex{display: flex;}
 body{font-family: dm;}
 h2{ color: black; font-size: 21px;}
+.cost,.rat,.num,.describe{display: none;}
 
 /* custom */
 
@@ -39,13 +40,32 @@ header nav li { padding-left: 20px; }
 header nav li :hover{text-decoration: underline;}
 
 .col-3{display: flex; flex-direction: column; flex-grow: 0; }
-.grid img { width: 100px; border-radius: 10px;  padding: 10px;  box-shadow: 0px 2px 4px 0px;}
+.grid img { width: 100px; border-radius: 10px;  padding: 10px;  box-shadow: 0px 2px 4px 0px; }
 .item h2{margin-top: 10px;}
 .item p { height: 40px; margin-top: 10px;}
 .image {background: white; display: grid; place-items: center; border: 2px solid grey;  border-radius: 10px;  height: 200px; margin-top: 20px;}
-.row {margin-top: 50px; color:rgb(235, 78, 235); margin-bottom: 50px;}
+.row {margin-top: 50px; color:#eb4eeb; margin-bottom: 50px;}
+.item:hover h2{text-decoration: underline;}
 
-.flash {width: 600px; display: grid; place-items: center; position: absolute; top: 50%; transform: translateY(-50%); left:50%; transform: translateX(-50%); background: white; border-radius: 10px;}
-.flash img{height: 600px;}
-.flash p{text-align: center; font-family: dm; font-size: 40px;}
+.flash {width: 700px; display: grid; place-items: center; position: fixed; top: 50%; transform: translate(-50%,-50%); left:50%;  background: white; border-radius: 10px; height: 530px;  box-shadow: 1px 1px 5px 4px grey ;display: none;}
+.flash img{height: 300px;margin-top: 10px; position: relative;}
 
+.flash p{text-align: center; font-family: dm; font-size: 20px; margin-top: 10px; margin-bottom: 40px;}
+.flash .ptitle{text-align: center; font-family: dm; font-size: 20px; margin-top: 30px;margin-bottom: 10px; color:#fcbf7f}
+.flash .desc{font-size: 12px; margin-top:5px; width: 570px; margin-bottom: 10px;}
+.flash .rating{position: absolute; left:80px; top:290px; border-radius: 10px; border: 1px solid #eb4eeb ; padding: 10px; background: white;}
+small{font-size: 10px;}
+.flash .price{color:blue}
+.flash .back{ padding:10px; background: #ffefde; position: absolute; left:25px; top:20px; border: 2px solid black; border-radius: 7px;}
+
+
+/* responsive */
+@media screen and (max-width :467px){
+
+
+.col-p-6{grid-column: span 6;}
+
+.col-p-12{grid-column: span 12;}
+
+    
+}
