@@ -4,14 +4,15 @@ button{ cursor: pointer; padding: 0;}
 :disabled{ cursor: not-allowed;}
 img{ vertical-align: bottom;}
 ul{ list-style: none; padding: 0;}
+a:hover{cursor: pointer;}
 
 @font-face {
     font-family: dm;
     src: url(font/DMSans-VariableFont_opsz\,wght.ttf);
     
 }
-.container{max-width: 1200px; margin: auto;}
-.row{display: grid; grid-template-columns: repeat(12,1fr); gap:2rem}
+.container{max-width: 1200px; margin: auto; padding: 10px ;}
+.row{display: grid; grid-template-columns: repeat(12,1fr); gap:2rem;}
 .col-1{grid-column: span 1;}
 .col-2{grid-column: span 2;}
 .col-3{grid-column: span 3;}
@@ -28,16 +29,22 @@ ul{ list-style: none; padding: 0;}
 body{font-family: dm;}
 h2{ color: black; font-size: 21px;}
 .cost,.rat,.num,.describe{display: none;}
+.hide{display: none;}
+.brd{border-radius: 10px}
 
 /* custom */
 
-header{display: flex; justify-content: space-between; align-items: center;  }
+header{display: flex; justify-content: space-between; align-items: center; position: relative; }
 h1 img{height: 120px; }
 body{background: #ffefde;}
-header form{margin-right: 50px;}
 header input{width: 300px;height: 40px; border-radius: 10px; border: none; padding: 20px;}
 header nav li { padding-left: 20px; }
 header nav li :hover{text-decoration: underline;}
+.filter{padding: 10px; border-radius: 10px ; border: none; background: white; position: relative; margin-right: 25px; width:103px ; font-size: 17px; cursor:pointer}
+.filter span{color: black;}
+.drop{background:white; position: absolute;bottom: -73px; left: 0px; padding: 10px; width: 103px; border-radius: 10px; }
+.fildrop{font-size: 16px;}
+.sub{font-size: 14px; margin-top: 7px;}
 
 .col-3{display: flex; flex-direction: column; flex-grow: 0; }
 .grid img { width: 100px; border-radius: 10px;  padding: 10px;  box-shadow: 0px 2px 4px 0px; }
@@ -72,6 +79,17 @@ small{font-size: 10px;}
 .col-p-6{grid-column: span 6;}
 
 .col-p-12{grid-column: span 12;}
+
+nav{display: none;}
+.filter{position: absolute; bottom:-35px;right:0px}
+header input{width: 200px;}
+.item{width: 330px;}
+.flash{width: 300px;}
+.flash img{height: 180px;}
+.flash .desc{width: auto; padding: 5px;}
+.notfound{font-size: 40px;}
+.flash .rating{top:5px; left:225px;box-shadow: 1px 1px 3px 0px #eb4eeb;}
+.flash .rating small{display: none;}
 
     
 }

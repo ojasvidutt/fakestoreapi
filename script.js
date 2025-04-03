@@ -115,6 +115,23 @@ fetch("https://fakestoreapi.com/products")
             })
           })
 
+          //filter 
+          document.querySelector(".filter").addEventListener("click",function() {
+              
+            document.querySelector(".drop").classList.toggle("hide")
+            if(this.style.borderRadius== "10px 10px 0px 0px"){
+                this.style.borderRadius="10px"
+            }
+            else{
+                this.style.borderRadius= "10px 10px 0px 0px"
+            }
+
+
+
+          })
+         
+
+
 
     })
 
