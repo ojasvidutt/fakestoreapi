@@ -8,7 +8,7 @@ fetch("https://fakestoreapi.com/products")
             let heading = extractTitle(j.title);
 
             document.querySelector(".row").innerHTML += `
-                <div class="col-3 item col-p-12">
+                <div class="col-3 item col-p-12" id=${j.id}>
                     <div class="image"><img src="${j.image}" alt=""></div>
                     <h2>${heading}</h2>
                     <p class = "title2" title="${j.title}">  ${truncatedTitle}</p>
@@ -37,7 +37,7 @@ fetch("https://fakestoreapi.com/products")
                 let price = item.querySelector(".cost").textContent;
 
 
-              
+
                 document.querySelector(".flash").innerHTML = ` 
                 <button class="back">&#129120;</button>
                  <img src="${img}" alt="">
@@ -49,42 +49,79 @@ fetch("https://fakestoreapi.com/products")
 
                 document.querySelector(".flash").style.display = "grid";
                 document.querySelector(".container").style.opacity = "0.5";
-             
+
 
                 // adding back button in flash
-                document.querySelector(".back").addEventListener("click",(event)=>{
-                    document.querySelector(".flash").style.display="none";
-                    document.querySelector(".container").style.opacity="1"
+                document.querySelector(".back").addEventListener("click", (event) => {
+                    document.querySelector(".flash").style.display = "none";
+                    document.querySelector(".container").style.opacity = "1"
                     event.stopPropagation();
                     console.log("clicked")
                 });
 
 
             })
-            
-           
-            
-           
-            })
-            document.addEventListener("click",()=>{
-                document.querySelector(".flash").style.display="none";
-                document.querySelector(".container").style.opacity="1"
-            
-              
+
+
+
+
+        })
+        document.addEventListener("click", () => {
+            document.querySelector(".flash").style.display = "none";
+            document.querySelector(".container").style.opacity = "1"
+
+
         })
         document.querySelector(".flash").addEventListener("click", (event) => {
             event.stopPropagation();
         });
-       
-        
 
+        // search bar 
 
-            })
-        
+        document.querySelector(".search").addEventListener("submit", (e) => {
+
+            
+            e.preventDefault();
+
+            let found= false;
+           let query = document.querySelector(".search input").value.toLowerCase();
+           document.querySelectorAll(".item").forEach((i)=>{
+            
+           let title = i.querySelector(".title2").title.toLowerCase();
+           if(title.includes(query)){
+            i.style.display="block";
+            found=true;
+           }
+           else{
+              i.style.display="none";
+           }
           
-    
-    
-    
+           })
+           if(!found){
+        document.querySelector(".notfound").style.display="block";
+            
+        }
+        else{
+            document.querySelector(".notfound").style.display="none";
+        }
+          
+        })
+
+       
+             // after search result functional home button to go back to home page
+          document.querySelector(".home").addEventListener("click",()=>{
+            document.querySelectorAll(".item").forEach((i)=>{
+                i.style.display="block";
+            })
+          })
+
+
+    })
+
+
+
+
+
 
 
 

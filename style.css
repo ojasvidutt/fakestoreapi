@@ -47,7 +47,7 @@ header nav li :hover{text-decoration: underline;}
 .row {margin-top: 50px; color:#eb4eeb; margin-bottom: 50px;}
 .item:hover h2{text-decoration: underline;}
 
-.flash {width: 700px; display: grid; place-items: center; position: fixed; top: 50%; transform: translate(-50%,-50%); left:50%;  background: white; border-radius: 10px; height: 530px;  box-shadow: 1px 1px 5px 4px grey ;display: none;}
+.flash {width: 750px; display: grid; place-items: center; position: fixed; top: 50%; transform: translate(-50%,-50%); left:50%;  background: white; border-radius: 10px; height: 530px;  box-shadow: 1px 1px 5px 4px grey ;display: none;}
 .flash img{height: 300px;margin-top: 10px; position: relative;}
 
 .flash p{text-align: center; font-family: dm; font-size: 20px; margin-top: 10px; margin-bottom: 40px;}
@@ -57,6 +57,12 @@ header nav li :hover{text-decoration: underline;}
 small{font-size: 10px;}
 .flash .price{color:blue}
 .flash .back{ padding:10px; background: #ffefde; position: absolute; left:25px; top:20px; border: 2px solid black; border-radius: 7px;}
+
+.notfound{
+    font-size: 50px;
+    text-align: center; 
+    display: none;
+}
 
 
 /* responsive */
