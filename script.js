@@ -18,7 +18,7 @@ fetch("https://fakestoreapi.com/products")
                       
                 </div>`;
 
-
+           
 
 
         });
@@ -125,13 +125,42 @@ fetch("https://fakestoreapi.com/products")
             else{
                 this.style.borderRadius= "10px 10px 0px 0px"
             }
-
-
-
+    })
+    let arr= [];
+          document.querySelectorAll(".item").forEach((i)=>{
+          
+          arr.push( i);
           })
-         
+          
+          document.querySelector(".htol").addEventListener("click",(e)=>{
+            e.preventDefault();
+            
+          
+            let sorteditems = arr.sort((a,b)=>extractPrice(b.querySelector(".cost").textContent)- extractPrice(a.querySelector(".cost").textContent))
+            document.querySelector(".row").replaceChildren(...sorteditems);
 
+                  
+          })
 
+          document.querySelector(".ltoh").addEventListener("click",(e)=>{
+            e.preventDefault();
+             document.querySelector(".row").innerHTML=""
+            // document.querySelectorAll(".item").forEach((i)=>{
+            //     for(j=0;j<=arr.length;j++){
+            //     if(i.querySelector(".cost")==arr.sort((a,b) => a-b)[j]){
+            //         document.querySelector(".row").appendChild(i);
+
+            //     }
+            //     }
+
+            console.log(arr);
+            // })
+            let sorteditems2 = arr.slice().sort((a,b)=>extractPrice(a.querySelector(".cost").textContent)- extractPrice(b.querySelector(".cost").textContent))
+            document.querySelector(".row").replaceChildren(...sorteditems2);
+
+                  
+          })
+        
 
     })
 
@@ -154,5 +183,13 @@ function extractTitle(text) {
     return word[0];
 
 }
+
+function extractPrice(price) {
+    console.log (price.split(" "))
+    console.log (price.split(" ").at(0));
+    return parseFloat( price.split(" ").at(0));
+    
+}
+
 
 
