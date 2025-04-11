@@ -26,7 +26,7 @@ a:hover{cursor: pointer;}
 .col-11{grid-column: span 11;}
 .col-12{grid-column: span 12;}
 .flex{display: flex;}
-body{font-family: dm;}
+body{font-family: dm; background-image: linear-gradient(135deg,#ffefde,#fdd9ebbf);}
 h2{ color: black; font-size: 21px;}
 .cost,.rat,.num,.describe{display: none;}
 .hide{display: none;}
@@ -36,23 +36,32 @@ h2{ color: black; font-size: 21px;}
 
 header{display: flex; justify-content: space-between; align-items: center; position: relative; }
 h1 img{height: 120px; }
-body{background: #ffefde;}
-header input{width: 300px;height: 40px; border-radius: 10px; border: none; padding: 20px;}
+header input{width: 300px;height: 40px; border-radius: 10px; border: none; padding: 20px; font-family: dm;}
 header nav li { padding-left: 20px; }
 header nav li :hover{text-decoration: underline;}
-.filter{padding: 10px; border-radius: 10px ; border: none; background: white; position: relative; margin-right: 25px; width:103px ; font-size: 17px; cursor:pointer}
+.filter{padding: 10px; border-radius: 10px ; border: none; background: white; position: relative; margin-right: 25px; width:103px ; font-size: 17px; cursor:pointer; }
 .filter span{color: black;}
 .drop{background:white; position: absolute;bottom: -73px; left: 0px; padding: 10px; width: 103px; border-radius: 10px; }
 .fildrop{font-size: 16px;}
 .sub{font-size: 14px; margin-top: 7px;}
 
+.categories ul  {display: flex; justify-content: space-around; }
+.categories ul li{ padding: 10px; background: #fff; border-radius: 10px; background-image: linear-gradient(135deg ,#ff91c9, #fff)}
+
+
 .col-3{display: flex; flex-direction: column; flex-grow: 0; }
-.grid img { width: 100px; border-radius: 10px;  padding: 10px;  box-shadow: 0px 2px 4px 0px; }
+.grid img { width: 100px; border-radius: 10px;  padding: 10px;  box-shadow: 0px 2px 4px 0px; background: white; }
 .item h2{margin-top: 10px;}
 .item p { height: 40px; margin-top: 10px;}
-.image {background: white; display: grid; place-items: center; border: 2px solid grey;  border-radius: 10px;  height: 200px; margin-top: 20px;}
+.image {background: white; display: grid; place-items: center; border: 2px solid grey;  border-radius: 10px;  height: 200px; margin-top: 20px; background-image: linear-gradient(135deg ,#f9ebee , #fff)}
 .row {margin-top: 50px; color:#eb4eeb; margin-bottom: 50px;}
 .item:hover h2{text-decoration: underline;}
+.category{display: none;}
+
+
+
+
+
 
 .flash {width: 750px; display: grid; place-items: center; position: fixed; top: 50%; transform: translate(-50%,-50%); left:50%;  background: white; border-radius: 10px; height: 530px;  box-shadow: 1px 1px 5px 4px grey ;display: none;}
 .flash img{height: 300px;margin-top: 10px; position: relative;}
@@ -60,16 +69,37 @@ header nav li :hover{text-decoration: underline;}
 .flash p{text-align: center; font-family: dm; font-size: 20px; margin-top: 10px; margin-bottom: 40px;}
 .flash .ptitle{text-align: center; font-family: dm; font-size: 20px; margin-top: 30px;margin-bottom: 10px; color:#fcbf7f}
 .flash .desc{font-size: 12px; margin-top:5px; width: 570px; margin-bottom: 10px;}
-.flash .rating{position: absolute; left:80px; top:290px; border-radius: 10px; border: 1px solid #eb4eeb ; padding: 10px; background: white;}
+.flash .rating{position: absolute; left:80px; top:290px; border-radius: 10px; border: 1px solid #eb4eeb ; padding: 10px; background: white; }
 small{font-size: 10px;}
 .flash .price{color:blue}
 .flash .back{ padding:10px; background: #ffefde; position: absolute; left:25px; top:20px; border: 2px solid black; border-radius: 7px;}
+.addtocart,.removecartitem{padding: 10px; position: absolute; right:65px ; bottom :40px;border-radius: 10px; background-image: linear-gradient(135deg,#eb4eeb, #fff); border: 0px solid #eb4eeb;  box-shadow: 1px 1px 4px 0px;}
+.removecartitem{position: relative; left: 375px; top:11px; background-image: linear-gradient(135deg,#ff7575, #fff); box-shadow: 1px 1px 2px 0px;}
+.count{position: absolute;right:10px;bottom: 50px; display: none;}
+.count button{padding:2px ;margin:5px}
 
 .notfound{
     font-size: 50px;
     text-align: center; 
     display: none;
 }
+
+/* cart */
+.cartitem{ align-items: center; background: white; padding: 20px; border-radius: 10px; width: 700px; height: 240px;}
+.cartitem img{width: 150px; max-height: 230px;}
+.cartitem .text{margin-left: 20px;}
+.cartitem .cartprice{font-size: 20px;}
+.box{display: grid; place-items: center; margin-top: 20px; }
+.checkout{background: white; color: #ff7575; width: 700px;height: 100px; margin-top: 20px; display: flex; align-items: center; padding: 0 100px; border-radius: 10px;}
+.checkout span{ color: blueviolet; margin-left: 10px;}
+
+
+
+
+
+
+
+
 
 
 /* responsive */
@@ -90,6 +120,7 @@ header input{width: 200px;}
 .notfound{font-size: 40px;}
 .flash .rating{top:5px; left:225px;box-shadow: 1px 1px 3px 0px #eb4eeb;}
 .flash .rating small{display: none;}
+
 
     
 }

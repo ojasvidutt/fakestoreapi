@@ -14,6 +14,7 @@ fetch("https://fakestoreapi.com/products")
                     <p class = "title2" title="${j.title}">  ${truncatedTitle}</p>
                     <p class="describe">${j.description}</p>
                     <p class="cost">${j.price}</p>
+                    <p class="category">${j.category}</p>
                     <div class="rat ">${j.rating.rate} <small class="num">${j.rating.count} </small></div>
                       
                 </div>`;
@@ -39,13 +40,15 @@ fetch("https://fakestoreapi.com/products")
 
 
                 document.querySelector(".flash").innerHTML = ` 
-                <button class="back">&#129120;</button>
+                <button class="back fa fa-arrow-left"></button>
                  <img src="${img}" alt="">
                    <p class="ptitle"> ${title2}</p> 
                    
                    <p class=" desc">${description}</p>
                    <p class="price"> $ ${price}</p>
-                   <div class="rating "> ${rating} &#11088; <small> ${people} ratings</small></div>`;
+                   <div class="rating "> ${rating} &#11088; <small> ${people} ratings</small></div>
+                   <button class="addtocart">Add To Cart <span class= " fa fa-cart"></span></button>
+                  `;
 
                 document.querySelector(".flash").style.display = "grid";
                 document.querySelector(".container").style.opacity = "0.5";
@@ -59,6 +62,96 @@ fetch("https://fakestoreapi.com/products")
                     console.log("clicked")
                 });
 
+             
+                
+                //add to cart 
+
+                document.querySelector(".addtocart").addEventListener("click",(event)=>{
+            
+                    document.querySelector(".addtocart").disabled=true;
+                  
+                    let title  = document.querySelector(".ptitle").textContent;
+                    let img  = document.querySelector(".flash img").src;
+                    let price  = document.querySelector(".price").textContent;
+                    document.cookie=`title=${title}`;
+                    document.cookie=`img=${img}`;
+                    document.cookie=`price=${price}`;
+
+        
+                   let div= document.createElement("div");
+                   div.classList.add("box");
+                   document.querySelector("main").appendChild(div);
+                   div.innerHTML=`<div class="cartitem flex">
+                        <img src="${extractCookie("img")}" alt="" >
+                        <div class="text">
+                            <h2 class="name">${truncateText(extractCookie("title"))}</h2>
+                            <p class="cartprice"> ${extractCookie("price")}</p>
+                            <div class="count" style= "display:block; position: static; margin-top:10px"><button class="plus">+</button><span class="countnum">1</span><button class="minus">-</button></div>
+                            <button class="removecartitem">REMOVE ITEM</button>
+
+                        </div>`
+                   div.style.display="none";
+                        console.log(document.querySelector(".box"));
+
+                        
+              // count of items
+              setTimeout(() => {
+                let count= 1;
+            div.querySelector(".plus").addEventListener("click",(e)=>{
+              
+             cartitem = e.target.parentElement;
+              count++;
+              cartitem.querySelector(".count .countnum").textContent=count;
+              console.log( cartitem.querySelector(".count .countnum"))
+              console.log(count);
+                        })
+
+                        
+                        div.querySelector(".minus").addEventListener("click",(e)=>{
+              
+                            cartitem = e.target.parentElement;
+                         if (count>0) {count-- ;}
+                          cartitem.querySelector(".count .countnum").textContent=count;
+                                    })
+                
+            }, 500);
+
+            //remove button in cart
+
+            div.querySelector(".removecartitem").addEventListener("click",(e)=>{
+              e.target.parentElement.parentElement.style.display="none";
+              e.target.parentElement.querySelector(".countnum").textContent =0;
+            })
+
+                         // adding count to cart items
+        //                  let count= 0;
+        //   document.querySelector(".plus").addEventListener("click",()=>{
+            
+           
+        //     count++;
+        //     document.querySelector(".count .num").innerHTML=count;
+        //     console.log(count);
+        //               })
+        //               document.querySelector(".minus").addEventListener("click",()=>{
+            
+                        
+        //                if (count>0) {count-- ;}
+        //                 document.querySelector(".count .num").innerHTML=count;
+        //                           })
+
+                
+
+
+
+        //// hide duplicates in cart
+                //    document.querySelectorAll(".box").forEach((i)=>{
+                //     document.querySelectorAll(".box").forEach((j)=>{
+                //            if(i===j){
+                //             i.style.display="none"
+                //         } 
+                //     }) })
+        
+                //   })
 
             })
 
@@ -109,23 +202,25 @@ fetch("https://fakestoreapi.com/products")
 
        
              // after search result functional home button to go back to home page
-          document.querySelector(".home").addEventListener("click",()=>{
+          document.querySelector(".home").addEventListener("click",(e)=>{
+            e.preventDefault();
+            document.querySelectorAll(".box").forEach((i)=>{
+                i.style.display="none";
+            })
+            const finalBox = document.querySelector(".final");
+            if (finalBox) {
+                finalBox.remove();
+            }
+
             document.querySelectorAll(".item").forEach((i)=>{
                 i.style.display="block";
             })
+            document.querySelectorAll(".categories li").forEach((btn) => {
+                btn.style.border = "none";
+            });
           })
 
-          //filter 
-          document.querySelector(".filter").addEventListener("click",function() {
-              
-            document.querySelector(".drop").classList.toggle("hide")
-            if(this.style.borderRadius== "10px 10px 0px 0px"){
-                this.style.borderRadius="10px"
-            }
-            else{
-                this.style.borderRadius= "10px 10px 0px 0px"
-            }
-    })
+       
     let arr= [];
           document.querySelectorAll(".item").forEach((i)=>{
           
@@ -141,37 +236,84 @@ fetch("https://fakestoreapi.com/products")
 
                   
           })
-
+                 
           document.querySelector(".ltoh").addEventListener("click",(e)=>{
             e.preventDefault();
              document.querySelector(".row").innerHTML=""
-            // document.querySelectorAll(".item").forEach((i)=>{
-            //     for(j=0;j<=arr.length;j++){
-            //     if(i.querySelector(".cost")==arr.sort((a,b) => a-b)[j]){
-            //         document.querySelector(".row").appendChild(i);
-
-            //     }
-            //     }
-
             console.log(arr);
-            // })
+          
             let sorteditems2 = arr.slice().sort((a,b)=>extractPrice(a.querySelector(".cost").textContent)- extractPrice(b.querySelector(".cost").textContent))
             document.querySelector(".row").replaceChildren(...sorteditems2);
 
-                  
+           
           })
+         
+         
+          //adding cart page
+          document.querySelector(".cart").addEventListener("click",(e)=>{
+            e.preventDefault();
+            document.querySelectorAll(".item").forEach((i)=>{
+                 i.style.display = "none";
+            })
+            document.querySelectorAll(".box").forEach((i)=>{
+                i.style.display = "block";
+           })
+        let div=  document.createElement("div");
+        div.classList.add("box","final");
+        document.querySelector("main").appendChild(div);
+
+           setInterval(() => {
+            document.querySelector(".final").innerHTML=` <div class="checkout" > TOTAL PRICE : <span> $ ${totalPrice()} </span></div>`
+            
+           }, 100);
+
+          })
+
         
 
+        
+          
     })
 
 
 
 
+    // document.querySelector(".flash").innerHTML = ` 
+    // <button class="back">&#129120;</button>
+    //  <img src="${img}" alt="">
+    //    <p class="ptitle"> ${title2}</p> 
+       
+    //    <p class=" desc">${description}</p>
+    //    <p class="price"> $ ${price}</p>
+    //    <div class="rating "> ${rating} &#11088; <small> ${people} ratings</small></div>
+    //    <button class="addtocart">Add To Cart <span class= " fa fa-cart"></span></button>`;
 
 
+   //filter 
+   document.querySelector(".filter").addEventListener("click",function() {
+              
+    document.querySelector(".drop").classList.toggle("hide")
+    if(this.style.borderRadius== "10px 10px 0px 0px"){
+        this.style.borderRadius="10px"
+    }
+    else{
+        this.style.borderRadius= "10px 10px 0px 0px"
+    }
+})
 
 
-
+function totalPrice() {
+    let prices = [];
+    document.querySelectorAll(".cartitem").forEach((i)=>{
+   
+      prices.push(parseFloat(i.querySelector(".cartprice").textContent.replace("$", "").trim()) * parseInt(i.querySelector(".countnum").textContent)) 
+     
+    })
+    let sum = prices.reduce((a, b) => a + b, 0);
+    return sum.toFixed(2);
+    
+    
+}
 function truncateText(text) {
     let words = text.split(" ");
     return words.length > 5 ? words.slice(1, 5).join(" ") + "..." : text;
@@ -185,11 +327,68 @@ function extractTitle(text) {
 }
 
 function extractPrice(price) {
-    console.log (price.split(" "))
-    console.log (price.split(" ").at(0));
+    // console.log (price.split(" "))
+    // console.log (price.split(" ").at(0));
     return parseFloat( price.split(" ").at(0));
     
 }
 
+function extractCookie(name) {
+
+   let cook= document.cookie.split("; ");
+   cook.forEach((i)=>{
+let [key,value]= i.split("=");
+if(key=== name){
+    res= value;
+}
+
+   })
+return res;
+}
+
+// name=username
+// document.cookie = "name = username";
+// console.log(extractCookie("name"))
+  //adding categories bar
+        
+  let categories= [...document.querySelectorAll(".category")];
+  let categorytext = new Set();
+  let cattextcaps= []
+ 
+ 
 
 
+  categories.forEach(el => {
+categorytext.add(el.textContent);
+  });
+  console.log(categorytext)
+
+categorytext.forEach((i)=>{
+let li =  document.createElement("li");
+document.querySelector(".categories ul").appendChild(li);
+li.textContent=i;
+
+}) 
+
+document.querySelectorAll(".categories li").forEach((i)=>{
+    i.addEventListener("click",(e)=>
+    {   
+        document.querySelectorAll(".box").forEach((i)=>{
+            i.style.display="none";
+        })
+        document.querySelectorAll(".categories li").forEach((btn) => {
+            btn.style.border = "none";
+        });
+     document.querySelectorAll(".category").forEach((j)=>{
+        if(i.textContent===j.textContent){
+            j.parentElement.style.display="block";
+        }
+        else{j.parentElement.style.display="none";}
+     })
+
+     i.style.border=" 2px solid black";
+    }
+    )
+})
+
+    })
