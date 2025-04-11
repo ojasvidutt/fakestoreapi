@@ -372,7 +372,11 @@ li.textContent=i;
 
 document.querySelectorAll(".categories li").forEach((i)=>{
     i.addEventListener("click",(e)=>
-    {   
+    {    const finalBox = document.querySelector(".final");
+        if (finalBox) {
+            finalBox.remove();
+        }
+
         document.querySelectorAll(".box").forEach((i)=>{
             i.style.display="none";
         })
