@@ -204,6 +204,7 @@ fetch("https://fakestoreapi.com/products")
              // after search result functional home button to go back to home page
           document.querySelector(".home").addEventListener("click",(e)=>{
             e.preventDefault();
+            document.querySelector(".categories").style.display="block";
             document.querySelectorAll(".box").forEach((i)=>{
                 i.style.display="none";
             })
