@@ -251,6 +251,7 @@ fetch("https://fakestoreapi.com/products")
          
           //adding cart page
           document.querySelector(".cart").addEventListener("click",(e)=>{
+            document.querySelector(".categories").style.display="none";
             e.preventDefault();
             document.querySelectorAll(".item").forEach((i)=>{
                  i.style.display = "none";
@@ -372,14 +373,9 @@ li.textContent=i;
 
 document.querySelectorAll(".categories li").forEach((i)=>{
     i.addEventListener("click",(e)=>
-    {    const finalBox = document.querySelector(".final");
-        if (finalBox) {
-            finalBox.remove();
-        }
+    {   
 
-        document.querySelectorAll(".box").forEach((i)=>{
-            i.style.display="none";
-        })
+    
         document.querySelectorAll(".categories li").forEach((btn) => {
             btn.style.border = "none";
         });
