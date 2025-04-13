@@ -219,6 +219,7 @@ fetch("https://fakestoreapi.com/products")
             document.querySelectorAll(".categories li").forEach((btn) => {
                 btn.style.border = "none";
             });
+          
           })
 
        
@@ -264,10 +265,19 @@ fetch("https://fakestoreapi.com/products")
         div.classList.add("box","final");
         document.querySelector("main").appendChild(div);
 
-           setInterval(() => {
-            document.querySelector(".final").innerHTML=` <div class="checkout" > TOTAL PRICE : <span> $ ${totalPrice()} </span></div>`
+         
+            setInterval(() => {
+                try {
+                      document.querySelector(".final").innerHTML=` <div class="checkout" > TOTAL PRICE : <span> $ ${totalPrice()} </span></div>`
+                    
+                } catch (error) {
+                    
+                }
+              
+                
+               }, 100);
             
-           }, 100);
+          
 
           })
 
