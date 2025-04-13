@@ -86,8 +86,8 @@ fetch("https://fakestoreapi.com/products")
                         <div class="text">
                             <h2 class="name">${truncateText(extractCookie("title"))}</h2>
                             <p class="cartprice"> ${extractCookie("price")}</p>
-                            <div class="count" style= "display:block; position: static; margin-top:10px"><button class="plus">+</button><span class="countnum">1</span><button class="minus">-</button></div>
-                            <button class="removecartitem">REMOVE ITEM</button>
+                            <div class="count" style= "display:block; position: static; margin-top:10px"><button class="plus fa fa-plus-square"></button><span class="countnum">1</span><button class="minus fa fa-minus-square"></button></div>
+                            <button class="removecartitem"> REMOVE </button>
 
                         </div>`
                    div.style.display="none";
@@ -204,7 +204,11 @@ fetch("https://fakestoreapi.com/products")
              // after search result functional home button to go back to home page
           document.querySelector(".home").addEventListener("click",(e)=>{
             e.preventDefault();
-            document.querySelector(".categories").style.display="block";
+            if (window.innerWidth <= 467) {
+                document.querySelector(".categories").style.display = "none";
+              } else {
+                document.querySelector(".categories").style.display = "block";
+              }
             document.querySelectorAll(".box").forEach((i)=>{
                 i.style.display="none";
             })
@@ -401,5 +405,55 @@ document.querySelectorAll(".categories li").forEach((i)=>{
     }
     )
 })
+// Toggle sidemenu on navicon click
+document.querySelector("header button").addEventListener("click", () => {
+    document.querySelector(".sidemenu").classList.toggle("show");
+  });
+  
+  document.querySelector(".sidemenu .home").addEventListener("click", (e) => {
+
+    e.preventDefault();
+    document.querySelector(".home").click(); //  Home logic
+    document.querySelector(".sidemenu").classList.remove("show");
+  });
+  
+  document.querySelector(".sidemenu .cart").addEventListener("click", (e) => {
+    e.preventDefault();
+    document.querySelector(".cart").click(); //  Cart logic 
+    document.querySelector(".sidemenu").classList.remove("show");
+  });
+  
+  
+  // Load categories into the sidemenu
+  document.querySelectorAll(".categories li").forEach((cat) => {
+    const clone = cat.cloneNode(true);
+    document.querySelector(".side-categories").appendChild(clone);
+  });
+  // Add filtering behavior to sidemenu categories
+document.querySelectorAll(".side-categories li").forEach((i) => {
+    i.addEventListener("click", (e) => {
+      // Hide sidemenu
+      document.querySelector(".sidemenu").classList.remove("show");
+  
+      // Clear borders on all categories (main and side)
+      document.querySelectorAll(".categories li, .side-categories li").forEach((btn) => {
+        btn.style.border = "none";
+      });
+  
+      // Filter items
+      document.querySelectorAll(".category").forEach((j) => {
+        if (i.textContent === j.textContent) {
+          j.parentElement.style.display = "block";
+        } else {
+          j.parentElement.style.display = "none";
+        }
+      });
+  
+      // Highlight the selected category in sidemenu
+      i.style.border = "2px solid black";
+    });
+  });
+  
+  
 
     })
