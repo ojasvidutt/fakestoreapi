@@ -123,7 +123,7 @@ small{font-size: 10px;}
  .categories {  display: none}
 nav{display: none;}
 header form{display: none;}
-header button{display: inline-block; background: none; color: #2781f9; background: none; font-size: 35px !important; border: none; margin-right: 20px;}
+header button{display: inline-block !important; background: none; color: #2781f9; background: none; font-size: 35px !important; border: none; margin-right: 20px;}
 .filter{position: absolute; bottom:-35px;right:0px}
 header input{width: 200px;}
 .sidemenu { position: fixed; top: 0; left: -250px; /* hidden by default */ width: 250px; height: 100vh; background-color: #ff91c9; box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2); padding: 20px; transition: left 0.3s ease; z-index: 1000;}
