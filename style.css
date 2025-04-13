@@ -134,7 +134,7 @@ header input{width: 200px;}
   .side-categories li {margin: 10px 0; font-size: 16px;}
   
 
-.item{width: 330px;}
+.item{width: auto;}
 .flash{width: 300px; }
 .flash img{height: 180px;}
 .flash .desc{width: auto; padding: 5px; margin-bottom: 0;}
