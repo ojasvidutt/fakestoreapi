@@ -257,7 +257,10 @@ fetch("https://fakestoreapi.com/products")
          
           //adding cart page
           document.querySelector(".cart").addEventListener("click",(e)=>{
+          
+            document.querySelector(".side-categories").style.display="none";
             document.querySelector(".categories").style.display="none";
+            document.querySelector(".cat-heading").style.display="none";
             e.preventDefault();
             document.querySelectorAll(".item").forEach((i)=>{
                  i.style.display = "none";
@@ -413,6 +416,8 @@ document.querySelector("header button").addEventListener("click", () => {
   document.querySelector(".sidemenu .home").addEventListener("click", (e) => {
 
     e.preventDefault();
+    document.querySelector(".cat-heading").style.display="inline-block"
+    document.querySelector(".side-categories").style.display="inline-block"
     document.querySelector(".home").click(); //  Home logic
     document.querySelector(".sidemenu").classList.remove("show");
   });
